@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "./redux/authSlice";
+import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -18,34 +20,37 @@ function Login() {
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        textAlign: "center",
-      }}
-    >
-      {isLoggedIn ? (
-        <div>
-          <h2>Welcome, {user.username}</h2>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <div>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-          />
-          <button onClick={handleLogin}>Login</button>
-        </div>
-      )}
-    </div>
+    <>
+      <Nav />
+      <div
+        style={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          textAlign: "center",
+        }}
+      >
+        {isLoggedIn ? (
+          <div>
+            <h2>Welcome, {user.username}</h2>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+            />
+            <button onClick={handleLogin}>Login</button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
